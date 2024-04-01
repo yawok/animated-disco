@@ -17,7 +17,7 @@ function AntelopeRow({ antelope }) {
 						</Tooltip>
 					}
 				>
-					<a href={antelope.picture} target='_blank'><span>{antelope.name}</span></a>
+					<a href={antelope.picture} target='_blank' rel="noreferrer"><span>{antelope.name}</span></a>
 				</OverlayTrigger>
 			</td>
 			<td>{antelope.continent}</td>
