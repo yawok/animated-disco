@@ -12,7 +12,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      fetch('https://work-sample-mk-fs.s3-us-west-2.amazonaws.com/species.json')
+      fetch('/species.json')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
