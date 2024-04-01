@@ -1,5 +1,5 @@
 # anteData
-## Some interesting facts about antelopes
+Some interesting facts about antelopes
 
 ## How to run locally
 
