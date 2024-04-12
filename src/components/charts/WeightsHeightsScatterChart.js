@@ -8,23 +8,24 @@ defaults.plugins.title.align = 'center'
 defaults.plugins.title.font.size = 24
 defaults.plugins.title.font.color = "#000000"
 
-const WeightHeightScatterChart = ({antelopeData}) => {
-
-    const weightsAndHeights = antelopeData.map((antelope) => ({ "x": antelope.weight, "y": antelope.height }))
+const WeightHeightScatterChart = ({ antelopeData }) => {
+	/* Display a scatter plot of weight against height of each antelope. */
+	
+	const weightsAndHeights = antelopeData.map((antelope) => ({ "x": antelope.weight, "y": antelope.height }))
 	console.log(weightsAndHeights)
-    const LABELS = antelopeData.map((antelope) => (antelope.name))
-    const DATA = {
-        labels: LABELS,
-        datasets: [
-            {
-                label: "Antelopes",
-                data: weightsAndHeights,
-                backgroundColor: "#8B8BAE"
-            }
-        ]
-    }
+	const LABELS = antelopeData.map((antelope) => (antelope.name))
+	const DATA = {
+		labels: LABELS,
+		datasets: [
+			{
+				label: "Antelopes",
+				data: weightsAndHeights,
+				backgroundColor: "#8B8BAE"
+			}
+		]
+	}
 
-    const OPTIONS = {
+	const OPTIONS = {
 		plugins: {
 			title: {
 				text: "Weights agianst Heights"
@@ -54,7 +55,7 @@ const WeightHeightScatterChart = ({antelopeData}) => {
 		}
 	}
 
-    return <Scatter data={DATA} options={OPTIONS}/>
+	return <Scatter data={DATA} options={OPTIONS} />
 }
 
 export default WeightHeightScatterChart

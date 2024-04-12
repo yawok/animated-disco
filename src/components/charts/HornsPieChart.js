@@ -11,6 +11,7 @@ defaults.plugins.title.font.color = "#000000"
 
 const HornsPieChart = ({ antelopeData }) => {
 
+	/* Display a Pie Chart of all the horns available. */
 	const hornsCounts = antelopeData.reduce((accumulator, current) => {
 		const horn = current.horns;
 		accumulator[horn] = (accumulator[horn] || 0) + 1;
@@ -18,7 +19,7 @@ const HornsPieChart = ({ antelopeData }) => {
 	}, {})
 
 	const LABELS = Object.keys(hornsCounts)
-	const COLORS = ['#8B8BAE', '#C5BCC7', '#AD96C5', '#5E7797', '#293B66',  '#0D1321', '#564A59']
+	const COLORS = ['#8B8BAE', '#C5BCC7', '#AD96C5', '#5E7797', '#293B66', '#0D1321', '#564A59']
 	const DATA = {
 		labels: LABELS,
 		datasets: [

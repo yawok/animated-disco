@@ -1,17 +1,20 @@
+import ReactLoading from 'react-loading'
 import './App.css'
-import ContinentsPieChart from './charts/ContinentsPieChart.js'
-import HornsPieChart from './charts/HornsPieChart.js'
-import WeightHeightScatterChart from './charts/WeightsHeightsScatterChart.js'
-import HornsBarChart from './charts/HornsBarChart.js'
-import AntelopeTable from './AntelopesTable.js'
+import Main from './components/Main.js'
+import Error from './components/Error.js'
 
 import React, { useState, useEffect } from 'react'
 
 export default function App() {
   const [antelopes, setAntelopes] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      // Full url: https://work-sample-mk-fs.s3-us-west-2.amazonaws.com/species.json
+      // Using a proxy set in the package.json to avoid CORS header error. 
+
       fetch('/species.json')
         .then(response => {
           if (!response.ok) {
@@ -23,42 +26,24 @@ export default function App() {
           setAntelopes(data)
         })
         .catch(error => {
-          console.error('Error fetching data:', error);
+          setError(true)
         })
+      setIsLoading(false)
     }
+
     fetchData()
   }, [])
 
 
-
   return (
     <div className='App'>
-      <div className='heading'>
-        <h1 className='App-Header'>anteData</h1>
-        <h3>A dataset of antelopes and some interesting facts</h3>
-      </div>
-      <div className="Antelope-Table">
-        <AntelopeTable antelopes={antelopes} />
-      </div>
-
-        <h2>Charts</h2>
-
-      <div className='chartsContainer'>
-        <div className='pieChartRow'>
-          <div className="chart">
-            <ContinentsPieChart data={antelopes} />
-          </div>
-          <div className="chart">
-            <HornsPieChart className="chart" antelopeData={antelopes} />
-          </div>
-        </div>
-        <div className='chartRow'>
-          <HornsBarChart antelopeData={antelopes} />
-        </div>
-        <div className='chartRow'>
-          <WeightHeightScatterChart antelopeData={antelopes} />
-        </div>
-      </div>
+      {isLoading ?
+        <div className='spinner'>
+          <ReactLoading color="#C5BCC7" type="spin" width={150} height={150} />
+        </div> :
+        error ?
+          <Error message={"Unable to fetch data. Try again later."} /> :
+          <Main antelopes={antelopes} />}
     </div >
 
   )

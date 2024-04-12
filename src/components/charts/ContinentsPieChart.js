@@ -10,6 +10,7 @@ defaults.plugins.title.font.color = "#000000"
 
 const ContinentsPieChart = ({ data }) => {
 
+	/* Display a Pie Chart of all the continents where the antelopes originate. */
 	const continentCounts = data.reduce((accumulator, current) => {
 		const continent = current.continent;
 		accumulator[continent] = (accumulator[continent] || 0) + 1;

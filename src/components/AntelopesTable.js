@@ -4,10 +4,13 @@ import React, { useState} from 'react'
 
 
 function AntelopeRow({ antelope }) {
+
 	return (
 		<tr>
 
 			<td className="hover-pointer">
+
+				{/* Display antelope image when hovering over name column */}
 				<OverlayTrigger
 					key={antelope.name}
 					placement='top'
@@ -29,6 +32,7 @@ function AntelopeRow({ antelope }) {
 }
 
 function AntelopeTableHeader({ handleSort, headerName, sortColumn, sortOrder }) {
+	// Add correct arrow to table header if it is sorted
 	const isSorted = sortColumn === headerName.toLowerCase();
 	const arrow = isSorted ? (sortOrder === 'asc' ? '▲' : '▼') : ''
 
